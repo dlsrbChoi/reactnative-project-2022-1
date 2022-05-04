@@ -1,9 +1,30 @@
 //import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, StatusBar, Dimensions } from 'react-native';
+import {useState, useEffect} from 'react';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, Dimensions, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Camera } from 'expo-camera';
 
 
 export default function App() {
+  const [hasPermission, setHasPermission] = useState(null);   //카메라 권한
+  const [type, setType] = useState(Camera.Constants.Type.back); //카메라 방향
+  const [image, setImage] = useState(null);                   //카메라 사진
+  const [camera, setCamera] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  const snap = async () => {
+    if (camera) {
+    	const data = await camera.takePictureAsync(null);
+      setImage(data.uri);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar />
@@ -20,18 +41,25 @@ export default function App() {
               <Text style={{fontSize: 19, marginTop: 5, color:'white'}}>화면 밖으로 나가지 않았다면, 완벽해요!</Text>
               {/* <View style={styles.CameraFocus}></View> */}
             </View>
+            {hasPermission === null ? <Text>카메라 권한을 허용해주세요...</Text> : null}
+            {hasPermission ? 
+              <Camera style={ styles.CameraModule } type={type} ref={ref => {setCamera(ref)}}></Camera>
+            
+            : <Text style={{marginTop: 250}}>카메라 권한이 거부되었습니다...</Text>}
 
           </View>
 
           <View style={styles.BottomNavigation}>
 
-          <View style={styles.GalleryButton}></View>
-            <View style={styles.SnapshotButton}>
-              <View style={styles.SnapshotButtonWhite}>
-                {/* <Icon name="refresh" size={36} color="#0d1a8a"/> */}
+            <View style={styles.GalleryButton}></View>
+              <View style={styles.SnapshotButton}>
+                <TouchableOpacity onPress={() => snap()}>
+                  <View style={styles.SnapshotButtonWhite}>
+                    {/* <Icon name="refresh" size={36} color="#0d1a8a"/> */}
+                  </View>
+                </TouchableOpacity>
               </View>
-            </View>
-          <View style={styles.Dummy}></View>
+            <View style={styles.Dummy}></View>
           </View>
       </SafeAreaView>
     </View>
@@ -67,7 +95,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'cyan',
   },
+  CameraModule: {
+    width: Dimensions.get('window').width,
+    flex: 5,
+  },
   CameraViewDialog: {
+    position: 'absolute',
+    zIndex: 1,
     marginTop: 25,
     width: Dimensions.get('window').width*0.91,
     height: 150,
