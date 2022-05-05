@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, button, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, button, TouchableHighlight, Text, View } from 'react-native';
 import { Alert } from 'react-native-web';
 
 const styles = StyleSheet.create({
@@ -14,87 +14,100 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection:'row'
   },
-  box:{
-    flex: 1,
-  },
+
   button_1: {
-    marginTop: 50,
+    marginTop: 30,
     alignSelf: 'center',
-    left: -57,
     borderWidth: 1,
     borderRadius: 10,
-    padding: 20,
+    padding: 40,
     backgroundColor: "#F7F7FB",
   },
   button_2: {
-    marginTop: 50,
+    marginTop: 30,
     alignSelf: 'center',
-    right: -57,
-    top: -107,
     borderWidth: 1,
     borderRadius: 10,
-    padding: 20,
+    padding: 40,
     backgroundColor: "#F7F7FB",
   },
   button_3: {
-    marginTop: 50,
+    marginTop: 30,
     alignSelf: 'center',
-    left: -57,
-    top: -100,
     borderWidth: 1,
     borderRadius: 10,
-    padding: 20,
-    backgroundColor: "#DFDFF3",
-  },
-  button_4: {
-    marginTop: 50,
-    alignSelf: 'center',
-    right:-57,
-    top: -207,
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 20,
+    padding: 40,
     backgroundColor: "#F7F7FB",
   },
-
+  button_4: {
+    marginTop: 30,
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 40,
+    backgroundColor: "#F7F7FB",
+  },
 });
 
 function clickBtnFunction(){
-  Alert.alert(button)
+  /* 코드 작성 */
 }
+
 export default class AppView extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={{ flex: 1, backgroundColor: '#6C6EC9' }} />
-
-        <View style={{ flex: 3, backgroundColor: 'black' }} />
-
+          
+        <View style={{ flex: 2, backgroundColor: 'gray' }}>
+          
+        </View>
+        <View style={{ flex: .2, backgroundColor: 'white' }}>
+          <Text>   식사를 기록해주세요.</Text>
+        </View>
         <View style={{ flex: 2, backgroundColor: 'white' }}>
+
           <View style={styles.container_2}>
-            <View style={{flex: 1, backgroundColor: 'white'}}/>
-            <View style={{flex: 1, backgroundColor: 'pink'}}/>
+            
+            <View style={{flex: 1, backgroundColor: 'white'}}> 
+              <TouchableHighlight 
+                onPress={()=>{}}
+                underlayColor="#DFDFF3"
+                style={styles.button_1}>
+                <Text>아침🍎</Text>
+              </TouchableHighlight>
+            </View>
+
+            <View style={{flex: 1, backgroundColor: 'white'}}>
+              <TouchableHighlight 
+              onPress={()=>{}}
+              underlayColor="#DFDFF3"
+              style={styles.button_2}>
+              <Text>점심🍲</Text>
+          </TouchableHighlight>
+            </View>
+
           </View>
           <View style={styles.container_3}>
-            <View style={{flex: 1, backgroundColor: 'cyan'}}/>
-            <View style={{flex: 1, backgroundColor: 'yellow'}}/>
-          </View>
-            {/* <View style={{flex: 1, backgroundColor: 'yellow'}}> */}
-
-              {/* <View style={styles.container_3}> */}
-                
-              {/* </View> */}
-            {/* </View> */}
-
-            {/* <View style={{flex: 1, backgroundColor: 'cyan'}}>
-                <View style={styles.container_3}>
-                  <View style={{flex: 1, backgroundColor: 'blue'}}/>
-                  <View style={{flex: 1, backgroundColor: 'red'}}/>
-                </View>
-            </View> */}
-        </View>
-
-          
+            <View style={{flex: 1, backgroundColor: 'white'}}>
+              <TouchableHighlight 
+                onPress={()=>{}}
+                underlayColor="#DFDFF3"
+                style={styles.button_3}>
+                <Text>저녁🥗</Text>
+              </TouchableHighlight>
+            </View>
+            
+            <View style={{flex: 1, backgroundColor: 'white'}}>
+              <TouchableHighlight 
+                onPress={()=>{}}
+                underlayColor="#DFDFF3"
+                style={styles.button_4}>
+                <Text>간식🍓</Text>
+              </TouchableHighlight>
+            </View>
+          </View>  
+        </View>       
       </View>
     );
   }
