@@ -1,21 +1,35 @@
+import 'react-native-gesture-handler';
+import  React, {Component} from 'react';
+
 //import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { StyleSheet, Text, View,Platform, SafeAreaView, StatusBar, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Image} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-export default function App({navigation}) {
+
+export default function UserScreen({route, navigation }){
+  
+    
+
+    
+    //console.log(route.params.image);
+    //console.log("array:"+array[0].image);
+    
   return (
     <View style={styles.container}>
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
           <View style={styles.TopNavigation}>
-            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack}/>
+            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
             <Text style={styles.Top_Text2}>식사 촬영</Text>
-            <Text style={styles.Top_Text}>다음</Text>
+            
+            <Text onPress={() => {navigation.navigate('NutritionFacts',{image:route.params.image}); }} style={styles.Top_Text}>다음</Text>
+          
           </View>
           <View style={styles.CameraView}>
           <View style={styles.OnMiddle_camera}>
@@ -24,9 +38,7 @@ export default function App({navigation}) {
           </View>
           <View style={styles.middle_camera}>
           <Image
-            //source={require('///var/mobile/Containers/Data/Application/FC1D3F2D-6F48-42B3-B827-D86D9D7B7951/Library/Caches/ExponentExperienceData/%2540myungjin2009%252FSource/Camera/D546375C-A809-4136-8957-CA80E6FFFFA7.jpg')}
-            style={styles.image}
-            
+            source={{uri:route.params.image}} style={styles.image}
           />
           </View>
 
@@ -44,9 +56,11 @@ export default function App({navigation}) {
 
           <View style={styles.BottomNavigation}>
 
-            <View style={styles.GalleryButton}></View>
+            <View style={styles.GalleryButton}>
+              <Icon name="insert-photo" size={50} color="black"/>
+            </View>
               <View style={styles.SnapshotButton}>
-                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                <TouchableOpacity onPress={() => {navigation.navigate('ScanFood')}}>
                   <View style={styles.SnapshotButtonWhite}>
                     {<Icon name="refresh" size={36} color="#0d1a8a"/> }
                   </View>
@@ -57,7 +71,8 @@ export default function App({navigation}) {
       </SafeAreaView>
     </View>
   );
-}
+  }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -81,6 +96,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     right:0,
     marginRight:15, 
+    marginBottom: 30,
     fontSize: 25,
     color:"#051898"
   },
@@ -184,8 +200,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     left:20,
-    borderRadius: 50,
-    backgroundColor: "green",
   },
   SnapshotButton: {
     width: 95,

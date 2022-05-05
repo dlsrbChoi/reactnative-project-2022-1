@@ -1,21 +1,16 @@
-//import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Dimensions, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera } from 'expo-camera';
 
-import RNFS from 'react-native-fs';
-
 
 export default function App({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);   //카메라 권한
   const [type, setType] = useState(Camera.Constants.Type.back); //카메라 방향, 지금은 미사용
-  const [image, setImage] = useState(null);                   //카메라 사진
   const [camera, setCamera] = useState(null);
 
   useEffect(() => {
-    //console.log(RNFS.CachesDirectoryPath);
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
@@ -24,10 +19,9 @@ export default function App({navigation}) {
 
   const snap = async () => {
     if (camera) {
-    	const data = await camera.takePictureAsync(null);
-      setImage(data.uri);
-      console.log({image});
-      //navigation.navigate('ScanResults');
+      const options = {quality: 0.5, base64: true};
+      const data = await camera.takePictureAsync(options);
+      navigation.navigate('ScanResults',{image:`data:image/jpeg;base64,${data.base64}`});
     }
   };
 
@@ -35,14 +29,9 @@ export default function App({navigation}) {
     <View style={styles.container}>
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
-          <View style={styles.TopNavigation}>
-            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack}/>
-            <Text>WILL Recycle Component</Text>
-            <Image
-            //source={require(image)}
-            styles={{width: 300, height: 300, backgroundColor:'black'}}
-            
-          />
+      <View style={styles.TopNavigation}>
+            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
+            <Text style={styles.Top_Text}>식사 촬영</Text>
           </View>
 
           <View style={styles.CameraView}>
@@ -62,12 +51,12 @@ export default function App({navigation}) {
 
           <View style={styles.BottomNavigation}>
 
-            <View style={styles.GalleryButton}></View>
+            <View style={styles.GalleryButton}>
+            <Icon name="insert-photo" size={50} color="black"/>
+            </View>
               <View style={styles.SnapshotButton}>
-                <TouchableOpacity onPress={() => snap()}>
-                  <View style={styles.SnapshotButtonWhite}>
-                    {/* <Icon name="refresh" size={36} color="#0d1a8a"/> */}
-                  </View>
+                <TouchableOpacity onPress={() => {snap()}}>
+                  <View style={styles.SnapshotButtonWhite} />
                 </TouchableOpacity>
               </View>
             <View style={styles.Dummy}></View>
@@ -96,6 +85,12 @@ const styles = StyleSheet.create({
     
     justifyContent: "center",
   },
+  Top_Text:{
+    position:"absolute",
+    left:55,
+    marginRight:5, 
+    fontSize: 25,
+  },
   arrowBack: {
     marginLeft: 10,
   },
@@ -121,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  CameraFocus: {  //여기는 카메라 기능 구현 후, 나중에 구현할 것
+  CameraFocus: {  //Camera Angle View. 여기는 카메라 기능 구현 후, 나중에 구현할 것
     position: 'absolute',
     width: 44.38,
     height: 44.38,
@@ -147,8 +142,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     left:20,
-    borderRadius: 50,
-    backgroundColor: "green",
   },
   SnapshotButton: {
     width: 95,
