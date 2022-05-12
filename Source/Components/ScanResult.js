@@ -97,14 +97,14 @@ const styles = StyleSheet.create({
     right:0,
     marginRight:15, 
     marginBottom: 30,
-    fontSize: 25,
+    fontSize: 22,
     color:"#051898"
   },
   Top_Text2:{
     position:"absolute",
     left:55,
     marginRight:5, 
-    fontSize: 25,
+    fontSize: 22,
   },
   arrowBack: {
     marginLeft: 10,
