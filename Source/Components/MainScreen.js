@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
   container_2:{
     flex: 1,
     flexDirection:'row',
-    marginBottom: -190
+    marginBottom: -100
   },
   container_3: {
     flex: 1,
     flexDirection:'row',
-    marginBottom: -80
+    marginBottom: -30
   },
 
   button_1: {
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopRightRadius: 16,
     flexDirection: 'row'
+    
   },
   home:{
     marginLeft:45,
@@ -88,14 +89,13 @@ function clickBtnFunction(navigation){
 export default function AppView ({navigation}){
     
     return (
-      
       <View style={styles.container}>
-        <View style={{ flex: 1, backgroundColor: 'gray' }} />
-          
+        <View style={{ flex: 1, backgroundColor: 'pink' }} />
+        
         <View style={{ flex: 2, backgroundColor: 'gray' }}></View>
-          
-        <View style={{ flex: 2, backgroundColor: 'white' }}>
-
+        
+        <View style={{ flex: 2, backgroundColor: 'black' }}>
+        
           <View style={styles.container_2}>
             
               <TouchableHighlight 
@@ -111,10 +111,11 @@ export default function AppView ({navigation}){
               style={styles.button_2}>
               <Text>점심🍲</Text>
           </TouchableHighlight>
+          
           </View>
 
           <View style={styles.container_3}>
-           
+         
               <TouchableHighlight 
                 onPress={()=>{clickBtnFunction(navigation)}}
                 underlayColor="#DFDFF3"
@@ -132,9 +133,9 @@ export default function AppView ({navigation}){
         </View>
 
         <View style={styles.footer}>
-           <Icon name="home" size={50} color="blue" style={styles.home} />
-           <Icon3 name="pluscircleo" size={50} color="blue" style={styles.home} />
-           <Icon2 name="user-circle" size={50} color="blue" style={styles.home} />
+           <Icon name="home" size={50} color="pink" style={styles.home} />
+           <Icon3 name="pluscircleo" size={50} color="pink" style={styles.home} />
+           <Icon2 name="user-circle" size={50} color="pink" style={styles.home} />
         </View>
       </View>
     );
