@@ -43,7 +43,7 @@ export default function App({route, navigation}) {
     <View style={styles.body}>
       <StatusBar style="light" />
       <View style={styles.Rectangle4730}>
-        <AntDesign name="arrowleft" size={42} color="black" style={styles.arrowmagin} />
+        <AntDesign name="arrowleft" size={42} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()} />
         <Text style={styles.Text001}>식사 기록</Text>
         <Text style={styles.Text002}>완료</Text>
       </View>
