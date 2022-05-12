@@ -1,5 +1,6 @@
 import React, {useState, Component} from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { Image } from 'react-native';
 import { 
   StyleSheet, 
   Text,
@@ -15,7 +16,8 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar, Colors } from 'react-native-paper';
 
-export default function App() {
+
+export default function App({route, navigation}) {
   
   const [eating, setEating] = useState(1);
   const eatall = () => setEating(1);
@@ -53,6 +55,9 @@ export default function App() {
         </View>
         <View style={styles.body3}>
           <View style={styles.Imagebox}>
+            <Image
+                source={{uri:route.params.image}} style={styles.image}
+            />
           </View>
           <View style={styles.Imagebox}>
           </View>
@@ -314,6 +319,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 20,
     marginLeft: 20,
+  },
+  image: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderRadius: 8,
   },
   Text005: {
     color: "#6c6ec9",
