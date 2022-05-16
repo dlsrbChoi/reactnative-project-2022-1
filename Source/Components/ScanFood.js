@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   arrowBack: {
-    marginLeft: 10,
+    marginLeft: 10
   },
 
   CameraView: {
