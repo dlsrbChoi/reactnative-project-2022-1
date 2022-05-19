@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     left:55,
     marginRight:5, 
-    fontSize: 25,
+    fontSize: 22,
   },
   arrowBack: {
     marginLeft: 10

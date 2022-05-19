@@ -2807,6 +2807,7 @@
   "integrity" "sha512-gm0cULqE5cTP39HZHi+eCGgQ2qMcwym92DwSzRpA5nA4Ah5oKksV+PwD7zzo6YJt3X3lgqrTYEqts9VQISCTgw=="
   "resolved" "https://registry.npmjs.org/expo-linear-gradient/-/expo-linear-gradient-11.3.0.tgz"
   "version" "11.3.0"
+
 "expo-manifests@~0.2.2":
   "integrity" "sha512-8PrMPyvElKXflYd1ApDHJR9JF0SR996iVEVQgHAMLzVP7OqEAM6dQaFeqrRqVn/DSsxEWkJTpxv8WJ5NWrT4Lg=="
   "resolved" "https://registry.npmjs.org/expo-manifests/-/expo-manifests-0.2.4.tgz"

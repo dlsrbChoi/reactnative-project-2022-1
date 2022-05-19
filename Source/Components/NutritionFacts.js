@@ -12,6 +12,7 @@ import {
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App({route, navigation}) {
   
@@ -47,13 +48,15 @@ export default function App({route, navigation}) {
 
   return (
     <View style={styles.body}>
-      <StatusBar style="light" />
-      <View style={styles.Rectangle4730}>
-        <AntDesign name="arrowleft" size={42} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()} />
-        <Text style={styles.Text001}>식사 기록</Text>
-        <Text style={styles.Text002}>완료</Text>
-      </View>
+      <StatusBar style="dark" />
+      <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.Rectangle4730}>
+        <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()} />
+        <Text style={styles.Text001}>식사 기록</Text>
+        <Text style={styles.Text002}>완료</Text>          
+      </View>
+      
       <View style={styles.Rectangle4734}>
         <View style={styles.Frame145}>
         
@@ -193,6 +196,7 @@ export default function App({route, navigation}) {
           </View>
       </View>
       </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -203,32 +207,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5E5E5',
   },
   Rectangle4730: {
-    marginTop: 40,
-    width: Dimensions.get('window').width,
+    position: 'relative',
     height: 70,
-    backgroundColor: '#ffffff',
-    borderStyle: 'solid',
-    borderColor: '#ffffff',
-    borderWidth: 1,
-    borderRadius: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    backgroundColor: "white",
+    width: Dimensions.get('window').width,    
+    justifyContent: "center",
   },
   arrowmagin: {
-    flex: 1,
     marginLeft: 10,
   },
   Text001: {
-    flex: 5,
-    fontSize: 20,
+    position:"absolute",
+    left:55,
+    marginRight:5, 
+    fontSize: 22,
   },
   Text002: {
-    flex: 1,
-    fontSize: 20,
-    color: '#051898',
-    textAlign: 'right',
-    marginRight: 30,
+    position:"absolute",
+    right:0,
+    marginRight:15, 
+    marginBottom: 30,
+    fontSize: 22,
+    color:"#051898"
   },
   body3: {
     flexDirection: 'row',
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   Rectangle4767: {
-    marginTop: 15,
+    marginTop: 5,
     width: Dimensions.get('window').width,
     height: 450,
     backgroundColor: '#ffffff',
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Rectangle4734: {
-    marginTop: 15,
+    marginTop: 5,
     width: Dimensions.get('window').width,
     height: 500,
     backgroundColor: '#ffffff',
@@ -372,6 +372,18 @@ const styles = StyleSheet.create({
   },
   fact: {
     flexDirection: 'column',
-  }
-
+  },
+  TopNavigation: {
+    position: 'relative',
+    height: 70,
+    backgroundColor: "white",
+    width: Dimensions.get('window').width,    
+    justifyContent: "center",
+  },
+  Top_Text:{
+    position:"absolute",
+    left:55,
+    marginRight:5, 
+    fontSize: 22,
+  },
 });

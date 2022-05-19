@@ -5,7 +5,9 @@ import {
     Text, 
     View,
     Dimensions,
-    ScrollView, 
+    ScrollView,
+    Image,
+    SafeAreaView
  } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
@@ -13,7 +15,8 @@ import { ProgressBar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/AntDesign';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function clickBtnFunction(navigation){
     /* 코드 작성 */
@@ -21,13 +24,34 @@ function clickBtnFunction(navigation){
   }
 
  export default function App({route, navigation}) {
+
+    const [mealtime, setMealtime] = React.useState(0);
+
     return (
         <View style={styles.body}>
             <StatusBar style="dark" />
+            <SafeAreaView>
             <View style={styles.Rectangle4723}>
+                <View style={styles.bodyrow}>
+                    <View style={{flex:1.2}}>
+                        <View style={styles.Frame112}>
 
+                        </View>
+                    </View>
+                    <View style={{flex: 2.8}}>
+                        <Text style={{color: "#FFFFFF", fontSize: 24, marginTop: 40}}>Linda Kim</Text>
+                    </View>
+                    <View style={{flex: 0.7}}>
+                        <View style={styles.Frame111}>
+                            <Feather name="bell" size={20} color="#FFFFFF" />
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.Frame113}>
+                    <Text style={{color: "#FFFFFF", fontSize: 20}}>내 건강정보 입력</Text>
+                </View>
             </View>
-
+            </SafeAreaView>
             <View style={styles.Rectangle4741}>
                 <Text>달력</Text>
 
@@ -37,21 +61,43 @@ function clickBtnFunction(navigation){
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.Rectangle4734}>
                     <View style={styles.bodyrow}>
-                        <View style={styles.Frame168}>
-                            <Text >All</Text>
+                        <TouchableOpacity onPress={() => setMealtime(1)}>
+                            <View style={styles.Frame168}>
+                                <Text style={{fontSize: 20, color: mealtime===1 ? "#6C6EC9" : "#888888"}}>All</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.Frame1681}>
+                            <Text style={{fontSize: 20, color: "#DFDFF3"}}>|</Text>
                         </View>
-                        <View style={styles.Frame168}>
-                            <Text>아침</Text>
+                        <TouchableOpacity onPress={() => setMealtime(2)}>
+                            <View style={styles.Frame168}>
+                                <Text style={{fontSize: 20, color: mealtime===2 ? "#6C6EC9" : "#888888"}}>아침</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.Frame1681}>
+                            <Text style={{fontSize: 20, color: "#DFDFF3"}}>|</Text>
                         </View>
-                        <View style={styles.Frame168}>
-                            <Text>점심</Text>
+                        <TouchableOpacity onPress={() => setMealtime(3)}>
+                            <View style={styles.Frame168}>
+                                <Text style={{fontSize: 20, color: mealtime===3 ? "#6C6EC9" : "#888888"}}>점심</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.Frame1681}>
+                            <Text style={{fontSize: 20, color: "#DFDFF3"}}>|</Text>
                         </View>
-                        <View style={styles.Frame168}>
-                            <Text>저녁</Text>
+                        <TouchableOpacity onPress={() => setMealtime(4)}>
+                            <View style={styles.Frame168}>
+                                <Text style={{fontSize: 20, color: mealtime===4 ? "#6C6EC9" : "#888888"}}>저녁</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.Frame1681}>
+                            <Text style={{fontSize: 20, color: "#DFDFF3"}}>|</Text>
                         </View>
-                        <View style={styles.Frame168}>
-                            <Text>+</Text>
-                        </View>
+                        <TouchableOpacity onPress={() => setMealtime(5)}>
+                            <View style={styles.Frame168}>
+                                <AntDesign name="plus" size={20} style={{color: mealtime===5 ? "#6C6EC9" : "#888888"}} />
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.bodyrow}>
                         <AnimatedCircularProgress
@@ -109,8 +155,8 @@ function clickBtnFunction(navigation){
                         </View>
                     </View>
                     <View style={styles.Rectangle4750}>
-                        <View style={{flex: 1.2, backgroundColor: 'red'}}>
-                            <Text style={{fontSize: 30}}>만두사진</Text>
+                        <View style={{flex: 1.2}}>
+                            <Image source={"../image/Flatdumpling.JPG"} style={{width: "100%", height: "100%"}} />
                         </View>
                         <View style={{flex: 2.3, backgroundColor: '#FFFFFF'}}>
                             <View style={{...styles.bodyrow, alignItems: 'center'}}>
@@ -147,7 +193,7 @@ function clickBtnFunction(navigation){
                     </View>
                     <View style={{...styles.Rectangle4750, marginTop: 30}}>
                         <View style={{flex: 1.2, backgroundColor: 'red'}}>
-                            <Text style={{fontSize: 30}}>돈카사진</Text>
+                            <Image source={"../image/porkcutletcurry.jpeg"} style={{width: "100%", height: "100%"}} />
                         </View>
                         <View style={{flex: 2.3}}>
                             <View style={{...styles.bodyrow, alignItems: 'center'}}>
@@ -201,17 +247,13 @@ function clickBtnFunction(navigation){
         backgroundColor: '#E5E5E5',
     },
     Rectangle4723 : {
-        marginTop: 40,
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height/5,
+        height: Dimensions.get('window').height/4.3,
         borderStyle: 'solid',
         borderColor: '#ffffff',
         borderWidth: 1,
         borderRadius: 1,
-        borderBottomRightRadius: 30,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        borderBottomRightRadius: 30,      
         backgroundColor: '#6C6EC9',
     },
     Rectangle4741: {
@@ -231,7 +273,7 @@ function clickBtnFunction(navigation){
     },
     Rectangle4734: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height/0.8,
+        height: Dimensions.get('window').height,
         backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',
@@ -239,6 +281,7 @@ function clickBtnFunction(navigation){
         borderWidth: 1,
         borderRadius: 1,
         marginBottom: Dimensions.get('window').height/2,
+        alignItems: 'center',
     },
     footer:{
         flex: 0.55,
@@ -249,6 +292,13 @@ function clickBtnFunction(navigation){
         bottom: 0,
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height/8,
+        shadowColor: "#000000",
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        shadowOffset: {
+        height: -5,
+        width: 0
+        }
     },
     home:{
         marginLeft:45,
@@ -263,7 +313,6 @@ function clickBtnFunction(navigation){
         marginBottom: 10,
     },
     circlebar: {
-        left: 10,
         top: 15,
     },
     Text005: {
@@ -284,6 +333,43 @@ function clickBtnFunction(navigation){
     bodycolumn: {
         flexDirection: 'column',
     },
+    Frame111: {
+        width: 40,
+        height: 40,
+        backgroundColor: '#051898',
+        borderStyle: 'solid',
+        borderColor: '#051898',
+        borderWidth: 1,
+        borderRadius: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30,
+    },
+    Frame112: {
+        width: 70,
+        height: 70,
+        backgroundColor: '#FFFFFF',
+        borderStyle: 'solid',
+        borderColor: '#FFFFFF',
+        borderWidth: 1,
+        borderRadius: 70,
+        marginLeft: 20,
+        marginTop: 30,
+    },
+    Frame113: {
+        width: 160,
+        height: 50,
+        backgroundColor: '#4A52B9',
+        borderStyle: 'solid',
+        borderColor: '#4A52B9',
+        borderWidth: 1,
+        borderRadius: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30,
+        marginLeft: 20,
+    },
     Frame147: {
         width: Dimensions.get('window').width/1.8,
         height: Dimensions.get('window').height/9,
@@ -296,7 +382,7 @@ function clickBtnFunction(navigation){
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 40,
+        marginLeft: 20,
         marginTop: 15,
         marginBottom: 15,
         shadowColor: "#000000",
@@ -311,9 +397,24 @@ function clickBtnFunction(navigation){
         width: Dimensions.get('window').width/4,
     },
     Frame168: {
-        width: Dimensions.get('window').width/10,
+        width: Dimensions.get('window').width/12,
         height: Dimensions.get('window').height/25,
-        backgroundColor: 'red',
+        backgroundColor: '#FFFFFF',
+        borderStyle: 'solid',
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 15,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: Dimensions.get('window').width/30,
+        marginTop: 20,
+        marginBottom: 5,
+    },
+    Frame1681: {
+        width: Dimensions.get('window').width/30,
+        height: Dimensions.get('window').height/25,
+        backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',
         borderWidth: 1,
@@ -368,14 +469,13 @@ function clickBtnFunction(navigation){
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 15,
         marginTop: 15,
         shadowColor: "#000000",
         shadowOpacity: 0.1,
         shadowRadius: 2,
         shadowOffset: {
         height: 8,
-        width: 6
+        width: 6,
         }
     },
 });
