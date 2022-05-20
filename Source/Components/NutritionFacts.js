@@ -12,13 +12,12 @@ import {
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App({route, navigation}) {
   
-  const [howManyEat, setHowManyEat] = React.useState(0);
+  const [howManyEat, setHowManyEat] = React.useState(1);
   const [aftereatStatus, setAftereatStatus] = React.useState({
-    "양호해요": false,
+    "양호해요": true,
     "입맛이없어요" : false,
     "구내염" : false,
     "조기포만감" : false,
@@ -49,14 +48,13 @@ export default function App({route, navigation}) {
   return (
     <View style={styles.body}>
       <StatusBar style="dark" />
-      <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Rectangle4730}>
         <View style={styles.Frame1691}>
           <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()}/>
         </View>
         <Text style={styles.Text001}>식사 기록</Text>
-        <Text style={styles.Text002}>완료</Text>          
+        <Text onPress={() => {navigation.navigate('FoodRecord',{image:route.params.image}); }} style={styles.Text002}>완료</Text>          
       </View>
       
       <View style={styles.Rectangle4734}>
@@ -198,8 +196,8 @@ export default function App({route, navigation}) {
           </View>
       </View>
       </ScrollView>
-      </SafeAreaView>
     </View>
+    
   );
 }
 
@@ -210,10 +208,11 @@ const styles = StyleSheet.create({
   },
   Rectangle4730: {
     position: 'relative',
-    height: 70,
+    height: Dimensions.get('window').height/12,
     backgroundColor: "white",
     width: Dimensions.get('window').width,    
     justifyContent: "center",
+    marginTop: Dimensions.get('window').height/22,
   },
   arrowmagin: {
     marginLeft: 10,
@@ -239,7 +238,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   Rectangle4767: {
-    marginTop: 5,
+    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 450,
     backgroundColor: '#ffffff',
@@ -308,7 +307,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Rectangle4734: {
-    marginTop: 5,
+    marginTop: 15,
     width: Dimensions.get('window').width,
     height: 500,
     backgroundColor: '#ffffff',

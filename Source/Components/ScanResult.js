@@ -25,7 +25,9 @@ export default function UserScreen({route, navigation }){
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
           <View style={styles.TopNavigation}>
-            <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
+            <View style={styles.Frame1691}>
+              <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
+            </View>
             <Text style={styles.Top_Text2}>식사 촬영</Text>
             
             <Text onPress={() => {navigation.navigate('NutritionFacts',{image:route.params.image}); }} style={styles.Top_Text}>다음</Text>
@@ -89,7 +91,6 @@ const styles = StyleSheet.create({
     height: 70,
     backgroundColor: "white",
     width: Dimensions.get('window').width,
-    
     justifyContent: "center",
   },
   Top_Text:{
@@ -221,5 +222,17 @@ const styles = StyleSheet.create({
   Dummy: {
     width: 50,
     height: 50,
-  }
+  },
+  Frame1691: {
+    width: 50,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

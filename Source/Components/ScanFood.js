@@ -33,7 +33,9 @@ export default function App({navigation}) {
       <StatusBar />
       <SafeAreaView style={styles.AndroidSafeArea}>
       <View style={styles.TopNavigation}>
+          <View style={styles.Frame1691}>
             <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
+          </View>
             <Text style={styles.Top_Text}>식사 촬영</Text>
           </View>
 
@@ -83,9 +85,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     height: 70,
     backgroundColor: "white",
-    width: Dimensions.get('window').width,
-    flexDirection: 'column',
-    
+    width: Dimensions.get('window').width,    
     justifyContent: "center",
   },
   Top_Text:{
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
   arrowBack: {
     marginLeft: 10
   },
-
   CameraView: {
     position: 'relative',
     flex: 5,
@@ -166,5 +165,17 @@ const styles = StyleSheet.create({
   Dummy: {
     width: 50,
     height: 50,
-  }
+  },
+  Frame1691: {
+    width: 50,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
