@@ -52,7 +52,9 @@ export default function App({route, navigation}) {
       <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.Rectangle4730}>
-        <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()} />
+        <View style={styles.Frame1691}>
+          <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()}/>
+        </View>
         <Text style={styles.Text001}>식사 기록</Text>
         <Text style={styles.Text002}>완료</Text>          
       </View>
@@ -276,6 +278,18 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 5,
     marginBottom: 5,
+  },
+  Frame1691: {
+    width: 50,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderRadius: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   Frame164: {
     width: Dimensions.get('window').width/2.8,
