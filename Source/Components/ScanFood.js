@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, StatusBar, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar, Dimensions, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera } from 'expo-camera';
 
@@ -12,13 +12,15 @@ export default function App({navigation}) {
   const [type, setType] = useState(Camera.Constants.Type.back); //카메라 방향, 지금은 미사용
   const [camera, setCamera] = useState(null);
 
-
   useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+    navigation.addListener('focus', () => {
+      setHasPermission(null);
+      (async () => {
+        const { status } = await Camera.requestCameraPermissionsAsync();
+        setHasPermission(status === 'granted');
+      })();
+    });
+  },[]);
 
   const snap = async () => {
     if (camera) {
@@ -28,9 +30,12 @@ export default function App({navigation}) {
     }
   };
 
+  
+
   return (
     <View style={styles.container}>
       <StatusBar />
+      <SafeAreaView style={styles.AndroidSafeArea}>
       <View style={styles.TopNavigation}>
           <View style={styles.Frame1691}>
             <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
@@ -65,6 +70,7 @@ export default function App({navigation}) {
               </View>
             <View style={styles.Dummy}></View>
           </View>
+      </SafeAreaView>
     </View>
   );
 }
@@ -81,11 +87,12 @@ const styles = StyleSheet.create({
   },
   TopNavigation: {
     position: 'relative',
-    height: Dimensions.get('window').height/12,
+    height: 70,
     backgroundColor: "white",
     width: Dimensions.get('window').width,    
     justifyContent: "center",
     marginTop: Dimensions.get('window').height/22,
+
   },
   Top_Text:{
     position:"absolute",

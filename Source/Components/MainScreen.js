@@ -13,6 +13,8 @@ import { StyleSheet,
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/AntDesign';
+import Icon4 from 'react-native-vector-icons/EvilIcons'
+import Icon5 from 'react-native-vector-icons/Entypo'
 import { Alert } from 'react-native-web';
 import { useState } from 'react/cjs/react.production.min';
 
@@ -23,11 +25,12 @@ import { AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Flatdumpling from "../image/flatdumpling.png";
 import Porkcutletcurry from "../image/Porkcutletcurry.png";
-
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {LocaleConfig} from 'react-native-calendars';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#E5E5E5'
   },
   container_2:{
     flex: 1,
@@ -102,16 +105,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#E5E5E5',
     },
     Rectangle4723 : {
-        position: 'relative',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height/4.3,
         borderStyle: 'solid',
-        borderColor: '#6C6EC9',
+        borderColor: '#ffffff',
         borderWidth: 1,
         borderRadius: 1,
         borderBottomRightRadius: 30,      
         backgroundColor: '#6C6EC9',
-        marginTop: Dimensions.get('window').height/22,
     },
     Rectangle4741: {
         width: Dimensions.get('window').width/1.1,
@@ -130,14 +131,14 @@ const styles = StyleSheet.create({
     },
     Rectangle4734: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        height: Dimensions.get('window').height*1,
         backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',
         borderTopLeftRadius: 30,
         borderWidth: 1,
         borderRadius: 1,
-        marginBottom: 20,
+        marginBottom: Dimensions.get('window').height/2,
         alignItems: 'center',
     },
     footer:{
@@ -360,6 +361,89 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderTopLeftRadius: 10,
     },
+    cal:{
+        //position: 'relative',
+        width: Dimensions.get('window').width/1.1,
+        height: Dimensions.get('window').height/7,
+        backgroundColor: 'yellow',
+        borderStyle: 'solid',
+        borderColor: 'pink',
+        marginLeft: 20,
+        borderWidth: 1,
+        borderRadius: 10,
+        marginTop:20,
+        marginBottom:14,
+    },
+    calrow:{
+        
+        position: 'relative',
+        width: Dimensions.get('window').width/1.1,
+        height: Dimensions.get('window').height/7,
+        backgroundColor: '#FFFFFF',
+        borderStyle: 'solid',
+        borderColor: '#FFFFFF',
+        marginLeft: 20,
+        borderWidth: 1,
+        borderRadius: 10,
+        marginTop:20,
+        marginBottom:14,
+    },
+    calTitle:{
+        //backgroundColor:"#FFFFFF",
+        flex:0.35,
+        flexDirection:"row",
+        
+    },
+    calTitleText:{
+        position:"absolute",
+        marginTop:10,
+        marginLeft:13,
+        marginRight:-10,
+        textAlign:"left",
+        fontSize:20,
+        color:"#6F6D7E",
+        fontWeight: "bold"
+    },
+    calMiddle:{
+        //backgroundColor:"#FFFFFF",
+        flex:0.65,
+        flexDirection:"row",
+        marginTop:5
+       
+    },
+    caldate:{
+        flex:0.2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:"#FFFFFF"
+    },
+    caltext:{
+        fontSize:15,
+        color:"#888888"
+    },
+    caltext2:{
+        fontSize:15,
+        color:"#888888"
+    },
+    caltext4:{
+        fontSize:15,
+        color:"#888888",
+        opacity:0
+    },
+    calTitleText2:{
+        position:"absolute",
+        color:"#707070",
+        marginTop:12,
+        marginLeft:Dimensions.get('window').width/3.7,
+    },
+    calTitlerow:{
+        flexDirection:"row"
+    },
+    button:{
+        backgroundColor: "#fe5746",
+    justifyContent: "center",
+    alignItems: "center"
+    }
 });
 
 function clickBtnFunction(navigation){
@@ -367,16 +451,74 @@ function clickBtnFunction(navigation){
   navigation.navigate('ScanFood');
 }
 
+LocaleConfig.locales['fr'] = {
+    monthNames: ['Janvier','Février','Mars','Avril','May','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+    monthNamesShort: ['Janv.','Févr.','Mars','Avril','May','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+    dayNames: ['일요일','월요일', '화요일','수요일','목요일','금요일','토요일'],
+    dayNamesShort: ['일', '월','화','수','목','금','토'],
+    today: 'Aujourd\'hui'
+  };
+  LocaleConfig.defaultLocale = 'fr';
+
 export default function AppView ({route, navigation}){
     
     const [isShowTest, setIsShowTest] = React.useState(false);
     const [mealtime, setMealtime] = React.useState(0);
+    
+    const dateToStr = () => {
+        var now=new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth()+1;
+      
+        return year+'년 '+month+'월'
+      }
+
+      const DayView = (day=1,date=30) => {
+        
+        var week = new Array('일', '월', '화', '수', '목', '금', '토');
+        var dayName = week[day]; // 월
+
+        return dayName
+      }    
+
+      const DayDay = () => {
+        var now=new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth()+1;
+        var date = now.getDate();
+
+        return date%32
+      }
+
+      const DayDay2 = (day2=1) => {
+        var now=new Date();
+        var day = day2%7;
+        var date1="dd"
+        
+
+        if(day==0){
+            date1="화"
+        }else if(day==1){
+            date1="수"
+        }else if(day==2){
+            date1="목"
+        }else if(day==3){
+            date1="금"
+        }else if(day==4){
+            date1="토"
+        }else if(day==5){
+            date1="일"
+        }else if(day==6){
+            date1="월"
+        }
+
+        return date1
+      }
 
     return (
       <View style={styles.container}>
         <StatusBar style="dark" />
-        <ScrollView showsVerticalScrollIndicator={false}>
-        
+        <SafeAreaView>
             <View style={styles.Rectangle4723}>
                 <View style={styles.bodyrow}>
                     <View style={{flex:1.2}}>
@@ -397,13 +539,24 @@ export default function AppView ({route, navigation}){
                     <Text style={{color: "#FFFFFF", fontSize: 20}}>내 건강정보 입력</Text>
                 </View>
             </View>
+            </SafeAreaView>
+
+
+                <View style={styles.calrow}>
+                <View style={styles.calTitle}><Text style={styles.calTitleText}>{dateToStr()} </Text><Icon4 name="chevron-down" size={30} style={styles.calTitleText2} /></View>
+                <View style={styles.calMiddle}>
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay()-3)  }</Text><Text style={styles.caltext2}>{DayDay()-3 }</Text><Text style={styles.caltext4} ><Icon5 name="dot-single" size={30} /></Text></View> 
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay()-2)  }</Text><Text style={styles.caltext2}>{DayDay()-2}</Text><Text style={styles.caltext}><Icon5 name="dots-two-horizontal" size={30} /></Text></View>
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay()-1)  }</Text><Text style={styles.caltext2}>{DayDay()-1}</Text><Text style={styles.caltext}><Icon5 name="dot-single" size={30} /></Text></View>
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay())  }</Text><Text style={styles.caltext2}>{DayDay()}</Text><Text style={styles.caltext}><Icon5 name="dots-two-horizontal" size={30} /></Text></View>
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay()+1)  }</Text><Text style={styles.caltext2}>{DayDay()+1}</Text><Text style={styles.caltext4}><Icon5 name="dot-single" size={30} /></Text></View>
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay()+2)  }</Text><Text style={styles.caltext2}>{DayDay()+2}</Text><Text style={styles.caltext4}><Icon5 name="dot-single" size={30} /></Text></View>
+                    <View style={styles.caldate}><Text style={styles.caltext}>{DayDay2(DayDay()+3)  }</Text><Text style={styles.caltext2}>{DayDay()+3}</Text><Text style={styles.caltext4}><Icon5 name="dot-single" size={30} /></Text></View>
+                </View>
+                </View>
             
-
-
-        <View style={styles.Rectangle4741}>
-                <Text>달력</Text>
-
-        </View>            
+            <View>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.Rectangle4734}>
                     <View style={styles.bodyrow}>
                         <TouchableOpacity onPress={() => setMealtime(1)}>
@@ -575,10 +728,11 @@ export default function AppView ({route, navigation}){
                             <ProgressBar progress={0.13} color="#6C6EC9" style={styles.bar}/>
                             <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>지방 13%</Text>
                         </View>
-                    </View>  
-                    
- </View>
-        </ScrollView>
+                    </View>
+                </View>
+                </ScrollView>
+            
+        </View>
         {isShowTest && <View style={{position:'absolute',  zindex: 30, alignItems: 'center',
         borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
          backgroundColor: 'white',
