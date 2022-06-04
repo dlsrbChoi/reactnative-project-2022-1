@@ -27,7 +27,7 @@ import Porkcutletcurry from "../image/Porkcutletcurry.png";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5'
+    backgroundColor: '#E5E5E5',
   },
   container_2:{
     flex: 1,
@@ -80,13 +80,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F7FB",
     marginRight:82
   },
-  footer:{
-    flex: 0.55,
-    backgroundColor: "white",
-    borderTopRightRadius: 16,
-    flexDirection: 'row'
-    
-  },
   home:{
     marginLeft:45,
     marginTop:15,
@@ -109,14 +102,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#E5E5E5',
     },
     Rectangle4723 : {
+        position: 'relative',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height/4.3,
         borderStyle: 'solid',
-        borderColor: '#ffffff',
+        borderColor: '#6C6EC9',
         borderWidth: 1,
         borderRadius: 1,
         borderBottomRightRadius: 30,      
         backgroundColor: '#6C6EC9',
+        marginTop: Dimensions.get('window').height/22,
     },
     Rectangle4741: {
         width: Dimensions.get('window').width/1.1,
@@ -142,7 +137,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderWidth: 1,
         borderRadius: 1,
-        marginBottom: Dimensions.get('window').height/2,
+        marginBottom: 20,
         alignItems: 'center',
     },
     footer:{
@@ -380,7 +375,8 @@ export default function AppView ({route, navigation}){
     return (
       <View style={styles.container}>
         <StatusBar style="dark" />
-        <SafeAreaView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+        
             <View style={styles.Rectangle4723}>
                 <View style={styles.bodyrow}>
                     <View style={{flex:1.2}}>
@@ -401,16 +397,13 @@ export default function AppView ({route, navigation}){
                     <Text style={{color: "#FFFFFF", fontSize: 20}}>내 건강정보 입력</Text>
                 </View>
             </View>
-            </SafeAreaView>
+            
 
 
         <View style={styles.Rectangle4741}>
                 <Text>달력</Text>
 
-        </View>
-            
-            <View>
-            <ScrollView showsVerticalScrollIndicator={false}>
+        </View>            
                 <View style={styles.Rectangle4734}>
                     <View style={styles.bodyrow}>
                         <TouchableOpacity onPress={() => setMealtime(1)}>
@@ -582,11 +575,10 @@ export default function AppView ({route, navigation}){
                             <ProgressBar progress={0.13} color="#6C6EC9" style={styles.bar}/>
                             <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>지방 13%</Text>
                         </View>
-                    </View>
-                </View>
-                </ScrollView>
-            
-        </View>
+                    </View>  
+                    
+ </View>
+        </ScrollView>
         {isShowTest && <View style={{position:'absolute',  zindex: 30, alignItems: 'center',
         borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
          backgroundColor: 'white',
