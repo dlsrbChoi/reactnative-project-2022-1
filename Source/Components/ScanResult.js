@@ -45,11 +45,11 @@ export default function UserScreen({route, navigation }){
 
           <ScrollView  showsHorizontalScrollIndicator={false} horizontal style={styles.word}>
             <View style={styles.little_word}><Text style={styles.little_text}>치아바타</Text></View>
-            <View style={styles.little_word}><Text style={styles.little_text}>호밀빵 샌드위치</Text></View>
+            <View style={styles.little_word_1}><Text style={styles.little_text}>호밀빵 샌드위치</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>햄 샐러드</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>목살구이</Text></View>
-            <View style={styles.little_word}><Text style={styles.little_text}>봉구스 밥버거</Text></View>
-            <View style={styles.little_word}><Text style={styles.little_text}>물고기 샌드위치</Text></View>
+            <View style={styles.little_word_1}><Text style={styles.little_text}>봉구스 밥버거</Text></View>
+            <View style={styles.little_word_1}><Text style={styles.little_text}>물고기 샌드위치</Text></View>
           </ScrollView>    
             
           </View>
@@ -168,6 +168,16 @@ const styles = StyleSheet.create({
     alignContent:"center",
     borderRadius : 40,
     width: SCREEN_WIDTH/5,
+    height: 40,
+    backgroundColor: "rgba(108, 110, 201, 0.8)",
+    marginLeft: 5,
+    marginRight: 5
+  },
+  little_word_1:{
+    justifyContent: 'center',
+    alignContent:"center",
+    borderRadius : 40,
+    width: SCREEN_WIDTH/4,
     height: 40,
     backgroundColor: "rgba(108, 110, 201, 0.8)",
     marginLeft: 5,

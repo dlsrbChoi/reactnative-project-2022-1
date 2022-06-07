@@ -13,9 +13,9 @@ import {
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const { height: SCREEN_HEIGHT} = Dimensions.get("window");
+
 export default function ScanResults2({route, navigation}) {
 
   return (
@@ -30,7 +30,7 @@ export default function ScanResults2({route, navigation}) {
       <View style={styles.body2}>
       <View style={styles.serchline}>
       <TextInput style={styles.search} placeholder = "3000여종의 음식 DB에서 찾아보기" />
-      <Icon name="search1" size={35}  style={styles.search1} />
+      <Icon name="search1" size={33}  style={styles.search1} />
       </View>
       <View style={styles.body3}>
       <View style={styles.Imagebox}>
@@ -44,16 +44,16 @@ export default function ScanResults2({route, navigation}) {
         
       </View>
       <View style={styles.scrollpart}>
-      <ScrollView horizontal style={styles.word1}>
+      <ScrollView horizontal style={styles.word1} showsHorizontalScrollIndicator={false}>
             <View style={styles.little_word}><Text style={styles.little_text}>치아바타</Text></View>
-            <View style={styles.little_word}><Text style={styles.little_text}>호밀빵 샌드위치</Text></View>
+            <View style={styles.little_word_1}><Text style={styles.little_text}>호밀빵 샌드위치</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>햄 샐러드</Text></View>
             <View style={styles.little_word}><Text style={styles.little_text}>목살구이</Text></View>
             
       </ScrollView>  
-      <ScrollView horizontal style={styles.word2}>
-            <View style={styles.little_word}><Text style={styles.little_text}>봉구스 밥버거</Text></View>
-            <View style={styles.little_word}><Text style={styles.little_text}>태그추가+</Text></View>
+      <ScrollView horizontal style={styles.word2} showsVerticalScrollIndicator={false}>
+            <View style={styles.little_word_1}><Text style={styles.little_text}>봉구스 밥버거</Text></View>
+            <View style={styles.little_word}><Text style={styles.little_text}>태그 추가 +</Text></View>
       </ScrollView>  
       </View>
       </View>
@@ -65,7 +65,7 @@ export default function ScanResults2({route, navigation}) {
           <View style={styles.little_word2}><Text style={styles.little_text2}>다시 촬영</Text></View>
           <View style={styles.little_word2}><Text style={styles.little_text2}>직접 입력</Text></View>
           </View>
-          <View style={styles.little_word3}><Text style={styles.little_text3}>저장</Text></View>
+          <View style={styles.little_word3}><Text onPress={() => {navigation.navigate('MainScreen');}} style={styles.little_text3}>저장</Text></View>
         
 
       </View>
@@ -136,10 +136,9 @@ const styles = StyleSheet.create({
   Imagebox: {
     width: Dimensions.get('window').width/2,
     height: Dimensions.get('window').width/2,
-    //backgroundColor: '#f7f7fb',
     backgroundColor:"black",
     borderStyle: 'solid',
-    borderColor: '#f7f7fb',
+    borderColor: '#6366ED',
     borderWidth: 1,
     borderRadius: 8,
     marginTop: 20,
@@ -153,27 +152,36 @@ const styles = StyleSheet.create({
     //flexGrow:1,
   },
   word2:{
-    marginTop:5,
     backgroundColor: "#FFFFFF",
-    height: SCREEN_HEIGHT/12,
+    height: SCREEN_HEIGHT/8,
     //flexGrow:1,
   },
   little_word:{
     flex:0.5,
     justifyContent: 'center',
     alignContent:"center",
-    borderRadius : 40,
-    width: SCREEN_WIDTH/5,
+    borderRadius : 20,
+    width: SCREEN_WIDTH/4.5,
     height: SCREEN_HEIGHT/18,
-    backgroundColor: "rgba(108, 110, 201, 0.8)",
-    marginLeft: 5,
-    marginRight: 5,
-    
+    backgroundColor: '#DFDFF3',
+    marginLeft: 3,
+    marginRight: 3,
+  },
+  little_word_1:{
+    flex:0.5,
+    justifyContent: 'center',
+    alignContent:"center",
+    borderRadius : 20,
+    width: SCREEN_WIDTH/3.5,
+    height: SCREEN_HEIGHT/18,
+    backgroundColor: '#DFDFF3',
+    marginLeft: 3,
+    marginRight: 3,    
   },
   little_text:{
     textAlign:'center',
     fontSize:15,
-    color:"white"
+    color:"#6C6EC9",
   },
   body4:{
     borderTopLeftRadius:10,
@@ -190,7 +198,7 @@ const styles = StyleSheet.create({
   },
   body4re:{
     flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 30,
     flex: 0.3
   },
   little_word2:{
@@ -219,7 +227,7 @@ const styles = StyleSheet.create({
     marginBottom:-20,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 65,
+    marginTop: 55,
     backgroundColor: '#ffffff',
     borderStyle: 'solid',
     borderColor: '#6366ED',
@@ -242,6 +250,7 @@ const styles = StyleSheet.create({
    },
    scrollpart:{
      flex:1,
+     marginLeft: 10,
    },
    Frame1691: {
     width: 50,

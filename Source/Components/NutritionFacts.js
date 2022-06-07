@@ -34,6 +34,22 @@ export default function App({route, navigation}) {
     setSelectedDate(date);
     hideDatePicker();
   };
+
+  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [timePickerVisible, setTimePickerVisible] = useState(false);
+
+  const showTimePicker = () => {
+    setTimePickerVisible(true);
+  };
+
+  const hideTimePicker = () => {
+    setTimePickerVisible(false);
+  };
+
+  const timehandleConfirm = (time) => {
+    setSelectedTime(time);
+    hideTimePicker();
+  };
   
   const [howManyEat, setHowManyEat] = React.useState(1);
   const [aftereatStatus, setAftereatStatus] = React.useState({
@@ -88,6 +104,19 @@ export default function App({route, navigation}) {
           onCancel={hideDatePicker}
           isDarkModeEnabled
         />
+        
+        <Text style={{color:'#888888', fontSize:20}}>|</Text>
+
+        <Button title={selectedTime ? selectedTime.toLocaleTimeString() : 'No time selected'} onPress={showTimePicker} />
+        <DateTimePickerModal
+          date={selectedTime}
+          isVisible={timePickerVisible}
+          mode="time"
+          onConfirm={timehandleConfirm}
+          onCancel={hideTimePicker}
+          isDarkModeEnabled
+        />
+
         </View>
 
         <View style={styles.body3}>
@@ -148,29 +177,29 @@ export default function App({route, navigation}) {
           <View style={styles.body3}>
             <TouchableOpacity onPress={() => setHowManyEat(1)}>
               <View style={{...styles.Frame169, backgroundColor: howManyEat===1 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: howManyEat===1 ? "#6C6EC9" : "black"}}>다 먹었어요.</Text>
+                <Text style={{...styles.Textdimensions, color: howManyEat===1 ? "#6C6EC9" : "black"}}>다 먹었어요.</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setHowManyEat(2)}>
             <View style={{...styles.Frame169, backgroundColor: howManyEat===2 ? "#DFDFF3" : "white"}}>
-              <Text style={{color: howManyEat===2 ? "#6C6EC9" : "black"}}>3/4 먹었어요.</Text>
+              <Text style={{...styles.Textdimensions,color: howManyEat===2 ? "#6C6EC9" : "black"}}>3/4 먹었어요.</Text>
             </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setHowManyEat(3)}>
               <View style={{...styles.Frame169, backgroundColor: howManyEat===3 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: howManyEat===3 ? "#6C6EC9" : "black"}}>1/2 먹었어요.</Text>
+                <Text style={{...styles.Textdimensions, color: howManyEat===3 ? "#6C6EC9" : "black"}}>1/2 먹었어요.</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.body3}>
           <TouchableOpacity onPress={() => setHowManyEat(4)}>
               <View style={{...styles.Frame169, backgroundColor: howManyEat===4 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: howManyEat===4 ? "#6C6EC9" : "black"}}>1/4 먹었어요.</Text>
+                <Text style={{...styles.Textdimensions, color: howManyEat===4 ? "#6C6EC9" : "black"}}>1/4 먹었어요.</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setHowManyEat(5)}>
               <View style={{...styles.Frame169, backgroundColor: howManyEat===5 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: howManyEat===5 ? "#6C6EC9" : "black"}}>거의 남겼어요.</Text>
+                <Text style={{...styles.Textdimensions, color: howManyEat===5 ? "#6C6EC9" : "black"}}>거의 남겼어요.</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -178,48 +207,48 @@ export default function App({route, navigation}) {
           <View style={styles.body3}>
             <TouchableOpacity onPress={() => setAfterEat("양호해요")}>
               <View style={{...styles.Frame169, backgroundColor: aftereatStatus.양호해요 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.양호해요 ? "#6C6EC9" : "black"}}>양호해요.</Text>
+                <Text style={{...styles.Textdimensions, color: aftereatStatus.양호해요 ? "#6C6EC9" : "black"}}>양호해요.</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setAfterEat("입맛이없어요")}>
               <View style={{...styles.Frame169, backgroundColor: aftereatStatus.입맛이없어요 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.입맛이없어요 ? "#6C6EC9" : "black"}}>입맛이 없어요.</Text>
+                <Text style={{...styles.Textdimensions, color: aftereatStatus.입맛이없어요 ? "#6C6EC9" : "black"}}>입맛이 없어요.</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setAfterEat("구내염")}>
               <View style={{...styles.Frame169, backgroundColor: aftereatStatus.구내염 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.구내염 ? "#6C6EC9" : "black"}}>구내염</Text>
+                <Text style={{...styles.Textdimensions, color: aftereatStatus.구내염 ? "#6C6EC9" : "black"}}>구내염</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.body3}>
           <TouchableOpacity onPress={() => setAfterEat("조기포만감")}>
               <View style={{...styles.Frame169, backgroundColor: aftereatStatus.조기포만감 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.조기포만감 ? "#6C6EC9" : "black"}}>조기포만감</Text>
+                <Text style={{...styles.Textdimensions,color: aftereatStatus.조기포만감 ? "#6C6EC9" : "black"}}>조기포만감</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setAfterEat("연하곤란/삼킴곤란")}>
-              <View style={{...styles.Frame169, backgroundColor: aftereatStatus['연하곤란/삼킴곤란'] ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus['연하곤란/삼킴곤란'] ? "#6C6EC9" : "black"}}>연하곤란/삼킴곤란</Text>
+              <View style={{...styles.Frame1692, backgroundColor: aftereatStatus['연하곤란/삼킴곤란'] ? "#DFDFF3" : "white"}}>
+                <Text style={{...styles.Textdimensions, color: aftereatStatus['연하곤란/삼킴곤란'] ? "#6C6EC9" : "black"}}>연하곤란/삼킴곤란</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.body3}>
           <TouchableOpacity onPress={() => setAfterEat("소화불량")}>
               <View style={{...styles.Frame169, backgroundColor: aftereatStatus.소화불량 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.소화불량 ? "#6C6EC9" : "black"}}>소화불량   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
+                <Text style={{...styles.Textdimensions, color: aftereatStatus.소화불량 ? "#6C6EC9" : "black"}}>소화불량   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => setAfterEat("복부불편감")}>
               <View style={{...styles.Frame169, backgroundColor: aftereatStatus.복부불편감 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.복부불편감 ? "#6C6EC9" : "black"}}>복부 불편감   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
+                <Text style={{...styles.Textdimensions, color: aftereatStatus.복부불편감 ? "#6C6EC9" : "black"}}>복부 불편감   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.body3}>
             <TouchableOpacity onPress={() => setAfterEat("잠시후에입력할게요")}>
               <View style={{...styles.Frame164, backgroundColor: aftereatStatus.잠시후에입력할게요 ? "#DFDFF3" : "white"}}>
-                <Text style={{color: aftereatStatus.잠시후에입력할게요 ? "#6C6EC9" : "black"}}>잠시 후에 입력할게요.   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
+                <Text style={{...styles.Textdimensions, color: aftereatStatus.잠시후에입력할게요 ? "#6C6EC9" : "black"}}>잠시 후에 입력할게요.   </Text><MaterialIcons name="keyboard-arrow-right" size={10} color="black" />
               </View>
             </TouchableOpacity>
           </View>
@@ -292,7 +321,23 @@ const styles = StyleSheet.create({
   },
   Frame169: {
     width: Dimensions.get('window').width/3.7,
-    height: 40,
+    height: Dimensions.get('window').height/22,
+    backgroundColor: '#ffffff',
+    borderStyle: 'solid',
+    borderColor: '#888888',
+    borderWidth: 1,
+    borderRadius: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 15,
+    marginRight: 5,
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  Frame1692: {
+    width: Dimensions.get('window').width/3,
+    height: Dimensions.get('window').height/22,
     backgroundColor: '#ffffff',
     borderStyle: 'solid',
     borderColor: '#888888',
@@ -319,8 +364,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Frame164: {
-    width: Dimensions.get('window').width/2.8,
-    height: 40,
+    width: Dimensions.get('window').width/2.5,
+    height: Dimensions.get('window').height/22,
     backgroundColor: '#ffffff',
     borderStyle: 'solid',
     borderColor: '#888888',
@@ -361,7 +406,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   Imagebox: {
-    width: 200,
+    width: 200, 
     height: 200,
     backgroundColor: '#f7f7fb',
     borderStyle: 'solid',
@@ -427,5 +472,8 @@ const styles = StyleSheet.create({
     left:55,
     marginRight:5, 
     fontSize: 22,
+  },
+  Textdimensions: {
+    fontSize: 14,
   },
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, 
-    SafeAreaView,
+import { 
+    StyleSheet,
     button, 
     TouchableHighlight, 
     Text, 
@@ -23,10 +23,12 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { ProgressBar } from 'react-native-paper';
 import { AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Profilepicture from "../image/Profilepicture.png";
 import Flatdumpling from "../image/flatdumpling.png";
 import Porkcutletcurry from "../image/Porkcutletcurry.png";
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -40,53 +42,62 @@ const styles = StyleSheet.create({
   container_3: {
     flex: 1,
     flexDirection:'row',
-    marginBottom: -20
+    marginBottom: -30
   },
-
   container_4:{
     flex: 1,
   },
-
   button_1: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 40,
-    marginLeft:82,
+    bottom: Dimensions.get('window').width*0.1,
+    width: Dimensions.get('window').width*0.28,
+    right: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
+    padding: 28,
     backgroundColor: "#F7F7FB",
+    borderColor: "#F7F7FB",
+
   },
   button_2: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 40,
+    padding: 28,
+    bottom: Dimensions.get('window').width*0.1,
+    width: Dimensions.get('window').width*0.28,
+    left: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
     backgroundColor: "#F7F7FB",
-    marginRight:82,
+    borderColor: "#F7F7FB",
+
   },
   button_3: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 40,
+    bottom: Dimensions.get('window').width*0.01,
+    width: Dimensions.get('window').width*0.28,
+    right: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
+    padding: 28,
     backgroundColor: "#F7F7FB",
-    marginLeft:82,
+    borderColor: "#F7F7FB",
+
   },
   button_4: {
-    marginTop: 30,
     alignSelf: 'center',
     borderWidth: 1,
+    bottom: Dimensions.get('window').width*0.01,
+    width: Dimensions.get('window').width*0.28,
+    left: Dimensions.get('window').width*0.015,
+    height: Dimensions.get('window').height*0.11,
     borderRadius: 10,
-    padding: 40,
+    padding: 28,
     backgroundColor: "#F7F7FB",
-    marginRight:82
-  },
-  home:{
-    marginLeft:45,
-    marginTop:15,
-    flex:1
+    borderColor: "#F7F7FB",
+
   },
   user:{
     marginRight:30,
@@ -105,14 +116,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#E5E5E5',
     },
     Rectangle4723 : {
+        position: 'relative',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height/4.3,
         borderStyle: 'solid',
-        borderColor: '#ffffff',
+        borderColor: '#6C6EC9',
         borderWidth: 1,
         borderRadius: 1,
         borderBottomRightRadius: 30,      
         backgroundColor: '#6C6EC9',
+        marginTop: Dimensions.get('window').height/22,
     },
     Rectangle4741: {
         width: Dimensions.get('window').width/1.1,
@@ -138,15 +151,15 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderWidth: 1,
         borderRadius: 1,
-        marginBottom: Dimensions.get('window').height/2,
         alignItems: 'center',
+        marginBottom: 20,
     },
     footer:{
-        flex: 0.55,
         backgroundColor: "#ffffff",
         borderTopRightRadius: 30,
         flexDirection: 'row',
         position: 'absolute',
+        justifyContent:'space-around',
         bottom: 0,
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height/8,
@@ -157,11 +170,6 @@ const styles = StyleSheet.create({
         height: -5,
         width: 0
         }
-    },
-    home:{
-        marginLeft:45,
-        marginTop:15,
-        flex:1
     },
     Text003: {
         fontSize: 20,
@@ -206,17 +214,17 @@ const styles = StyleSheet.create({
     Frame112: {
         width: 70,
         height: 70,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#6C6EC9',
         borderStyle: 'solid',
-        borderColor: '#FFFFFF',
+        borderColor: '#6C6EC9',
         borderWidth: 1,
         borderRadius: 70,
         marginLeft: 20,
         marginTop: 30,
     },
     Frame113: {
-        width: 160,
-        height: 50,
+        width: Dimensions.get('window').width/3,
+        height: Dimensions.get('window').height/18,
         backgroundColor: '#4A52B9',
         borderStyle: 'solid',
         borderColor: '#4A52B9',
@@ -361,6 +369,12 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderTopLeftRadius: 10,
     },
+    image_1: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        borderRadius: 100,
+    },
     cal:{
         //position: 'relative',
         width: Dimensions.get('window').width/1.1,
@@ -441,9 +455,56 @@ const styles = StyleSheet.create({
     },
     button:{
         backgroundColor: "#fe5746",
-    justifyContent: "center",
-    alignItems: "center"
-    }
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    bhome:{
+        right: Dimensions.get('window').width*0.13,
+        top: Dimensions.get('window').width*0.17,
+        color:"#051898",
+    },
+    bprofile:{
+        right: Dimensions.get('window').width*0.167,
+        top: Dimensions.get('window').width*0.17,
+        color:"black",
+    },
+    식사: {
+        top:Dimensions.get('window').width*0.03,
+        right: Dimensions.get('window').width*0.12,
+    },
+    home:{
+        marginTop:15,
+        width: 50,
+        height: 80,
+        backgroundColor: '#ffffff',
+        borderStyle: 'solid',
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 15,
+        textAlign:'center',
+    },
+    home_1:{
+        marginTop:15,
+        width: 70,
+        height: 70,
+        backgroundColor: '#ffffff',
+        borderStyle: 'solid',
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 15,
+    },
+    home_2:{
+        marginTop:15,
+        width: 50,
+        height: 70,
+        backgroundColor: '#ffffff',
+        borderStyle: 'solid',
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 15,
+        textAlign:'center',
+    },
+   
 });
 
 function clickBtnFunction(navigation){
@@ -464,6 +525,12 @@ export default function AppView ({route, navigation}){
     
     const [isShowTest, setIsShowTest] = React.useState(false);
     const [mealtime, setMealtime] = React.useState(0);
+
+    const [isBackgroundShow, setIsBackgroundShow] =React.useState(false);
+    const 함수 = () => {
+        isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false);
+        isBackgroundShow === false ? setIsBackgroundShow(true) : setIsBackgroundShow(false);
+    }
     
     const dateToStr = () => {
         var now=new Date();
@@ -518,12 +585,13 @@ export default function AppView ({route, navigation}){
     return (
       <View style={styles.container}>
         <StatusBar style="dark" />
-        <SafeAreaView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+       
             <View style={styles.Rectangle4723}>
                 <View style={styles.bodyrow}>
                     <View style={{flex:1.2}}>
                         <View style={styles.Frame112}>
-
+                            <Image source={Profilepicture} style={styles.image_1} />
                         </View>
                     </View>
                     <View style={{flex: 2.8}}>
@@ -536,10 +604,10 @@ export default function AppView ({route, navigation}){
                     </View>
                 </View>
                 <View style={styles.Frame113}>
-                    <Text style={{color: "#FFFFFF", fontSize: 20}}>내 건강정보 입력</Text>
+                    <Text style={{color: "#FFFFFF", fontSize: 17}}>내 건강정보 입력</Text>
                 </View>
             </View>
-            </SafeAreaView>
+            
 
 
                 <View style={styles.calrow}>
@@ -556,7 +624,7 @@ export default function AppView ({route, navigation}){
                 </View>
             
             <View>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            
                 <View style={styles.Rectangle4734}>
                     <View style={styles.bodyrow}>
                         <TouchableOpacity onPress={() => setMealtime(1)}>
@@ -730,60 +798,73 @@ export default function AppView ({route, navigation}){
                         </View>
                     </View>
                 </View>
-                </ScrollView>
+                
             
         </View>
-        {isShowTest && <View style={{position:'absolute',  zindex: 30, alignItems: 'center',
-        borderRadius: 15, marginLeft: 40, marginTop:300 ,width: 300, height: 350,
-         backgroundColor: 'white',
-         width: Dimensions.get('window').width*0.8,
-         height: Dimensions.get('window').height*0.45, }}>
-        <Text>식사를 기록해 주세요</Text>
-          <View style={styles.container_2}>
-           
-              <TouchableHighlight 
-                
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_1}>
-                <Text>아침🍎</Text>
-                
-              </TouchableHighlight>
-              
-              <TouchableHighlight 
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_2}>
-                <Text>점심🍲</Text>
-          </TouchableHighlight>
-          
-          </View>
-
-          <View style={styles.container_3}>
-         
-              <TouchableHighlight 
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_3}>
-                <Text>저녁🥗</Text>
-              </TouchableHighlight>
+        </ScrollView>
+        {isBackgroundShow && <View style={{backgroundColor:'rgba( 0, 0, 0, 0.5 )', position: "absolute", 
+            width:Dimensions.get('window').width, height:Dimensions.get('window').height}}>
+            {isShowTest && <View style={{position:'absolute', alignItems: 'center',
+            borderRadius: 15, marginLeft: 40,
+            backgroundColor: 'white',            
+            bottom:Dimensions.get('window').width*0.3,
+            width: Dimensions.get('window').width*0.65,
+            height: Dimensions.get('window').height*0.33,
+            left: Dimensions.get('window').width*0.07 }}>
+            <View style={styles.식사}><Text style={{ fontWeight: 'bold'}}>식사를 기록해 주세요.</Text></View>
             
-              <TouchableHighlight 
-                onPress={()=>{clickBtnFunction(navigation)}}
-                underlayColor="#DFDFF3"
-                style={styles.button_4}>
-                <Text>간식🍓</Text>
-              </TouchableHighlight>
-          </View>  
+            <View style={styles.container_2}>
+                <TouchableHighlight  
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_1}>
+                    <Text style={{fontWeight: 'bold'}}>아침🍎</Text>
+                    
+                </TouchableHighlight>
+                <TouchableHighlight 
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_2}>
+                    <Text style={{fontWeight: 'bold'}}>점심🍲</Text>
+            </TouchableHighlight>
+            
+            </View>
+
+            <View style={styles.container_3}>
+            
+                <TouchableHighlight 
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_3}>
+                    <Text style={{fontWeight: 'bold'}}>저녁🥗</Text>
+                        
+                </TouchableHighlight>
+                
+                <TouchableHighlight 
+                    onPress={()=>{clickBtnFunction(navigation)}}
+                    underlayColor="#DFDFF3"
+                    style={styles.button_4}>
+                    <Text style={{fontWeight: 'bold'}}>간식🍓</Text>
+                </TouchableHighlight>
+            </View>  
+            </View>
+            
+            }
         </View>}
-
+        
         <View style={styles.footer}>
-           <Icon name="home" size={50} color="#6C6EC9" style={styles.home} onPress={() => isShowTest=== false ? setIsShowTest(false): setIsShowTest(false)}/>
-           <Icon3 name="pluscircleo" size={50} color="#6C6EC9" style={styles.home} 
-            onPress={() => isShowTest=== false ? setIsShowTest(true) : setIsShowTest(false)}
+
+           <Icon name="home" size={40} color="#051898" style={styles.home} ><Text style={{fontSize:14}}>홈</Text></Icon>
+           
+           <Icon3 name="pluscircleo" size={58} color="#051898" style={styles.home_1} 
+            onPress={() => 함수()}
             />
-           <Icon2 name="user-circle" size={50} color="#6C6EC9" style={styles.home} />
+           <Icon2 name="user-circle" size={40} color="#333333" style={styles.home_2}><Text style={{fontSize:14}}>MY</Text></Icon2>
+           
+
         </View>
+        
       </View>
+
     );
   }
