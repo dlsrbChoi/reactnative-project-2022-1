@@ -90,7 +90,7 @@ export default function App({route, navigation}) {
           <AntDesign name="arrowleft" size={40} color="black" style={styles.arrowmagin} onPress={()=>navigation.goBack()}/>
         </View>
         <Text style={styles.Text001}>식사 기록</Text>
-        <Text onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }} style={styles.Text002}>완료</Text>          
+        <Text onPress={() => {navigation.navigate('MainScreen',{image:route.params.image}); }} style={styles.Text002}>완료</Text>          
       </View>
       
       <View style={styles.Rectangle4734}>
@@ -120,10 +120,15 @@ export default function App({route, navigation}) {
         </View>
 
         <View style={styles.body3}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.Imagebox}>
             <Image
                 source={{uri:route.params.image}} style={styles.image}
             />
+            <View style={styles.Frame154} >
+              <Text style={{color: '#F7F7FB', fontSize: 15}} onPress={() => {navigation.navigate('ScanResults2',{image:route.params.image}); }}>편집</Text>
+            </View>
+            
           </View>
           <View style={styles.Imagebox}>
             <TouchableOpacity>
@@ -131,6 +136,7 @@ export default function App({route, navigation}) {
             </TouchableOpacity>
             
           </View>
+          </ScrollView>
         </View>
 
 
@@ -334,6 +340,20 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 5,
     marginBottom: 5,
+  },
+  Frame154: {
+    borderStyle: 'solid',
+    borderColor: '#00000033',
+    backgroundColor: '#00000033',
+    borderWidth: 1,
+    borderRadius: 40,
+    alignItems: 'center',
+    position: 'absolute',
+    justifyContent: 'center',
+    width: 60,
+    height: 40,
+    left: 15,
+    bottom: 15,
   },
   Frame1692: {
     width: Dimensions.get('window').width/3,

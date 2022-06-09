@@ -10,7 +10,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -33,15 +33,16 @@ export default function ScanResults2({route, navigation}) {
       <Icon name="search1" size={33}  style={styles.search1} />
       </View>
       <View style={styles.body3}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <View style={styles.Imagebox}>
        <Image
                 source={{uri:route.params.image}} style={styles.image}
             />     
       </View>
       <View style={styles.Imagebox}>
-
+        <Ionicons name="md-images-outline" size={45} color="#DFDFF3" />
       </View>      
-        
+      </ScrollView>
       </View>
       <View style={styles.scrollpart}>
       <ScrollView horizontal style={styles.word1} showsHorizontalScrollIndicator={false}>
@@ -62,10 +63,10 @@ export default function ScanResults2({route, navigation}) {
         
           <Text style={styles.body4Text} > <Icon name="warning" size={18}  style={styles.warning} /> 오늘의 한끼를 표현할 마땅한 태그가 없다면</Text>
           <View style={styles.body4re}>
-          <View style={styles.little_word2}><Text style={styles.little_text2}>다시 촬영</Text></View>
+          <View style={styles.little_word2}><Text style={styles.little_text2} onPress={() => {navigation.navigate('ScanFood')}}>다시 촬영</Text></View>
           <View style={styles.little_word2}><Text style={styles.little_text2}>직접 입력</Text></View>
           </View>
-          <View style={styles.little_word3}><Text onPress={() => {navigation.navigate('MainScreen');}} style={styles.little_text3}>저장</Text></View>
+          <View style={styles.little_word3}><Text onPress={() => {navigation.navigate('NutritionFacts',{image:route.params.image}); }} style={styles.little_text3}>저장</Text></View>
         
 
       </View>
@@ -136,13 +137,15 @@ const styles = StyleSheet.create({
   Imagebox: {
     width: Dimensions.get('window').width/2,
     height: Dimensions.get('window').width/2,
-    backgroundColor:"black",
+    backgroundColor: "#F7F7FB",
     borderStyle: 'solid',
     borderColor: '#6366ED',
-    borderWidth: 1,
+    borderWidth: 4,
     borderRadius: 8,
     marginTop: 20,
     marginLeft: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
   word1:{
     marginTop:20,
@@ -246,7 +249,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    borderRadius: 8
+    borderRadius: 4,
    },
    scrollpart:{
      flex:1,
