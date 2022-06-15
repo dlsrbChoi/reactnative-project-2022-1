@@ -1,9 +1,7 @@
 import 'react-native-gesture-handler';
 import  React, {useState,Component} from 'react';
-
-
-//import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Platform, SafeAreaView, StatusBar, Dimensions, ScrollView, TouchableOpacity,TextInput,Keyboard,
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Platform, SafeAreaView, Dimensions, ScrollView, TouchableOpacity,TextInput,Keyboard,
   KeyboardAvoidingView,} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -26,6 +24,7 @@ export default function LoginScreen({route, navigation }){
   return (
     
     <View style={styles.body1}>
+      <StatusBar style="dark" />
       <View style={styles.body2}>
         <Image
                 source={mainIcon} style={{}}
@@ -34,14 +33,14 @@ export default function LoginScreen({route, navigation }){
         <Text style={styles.logo}>SW_식단관리</Text>
       </View>
       <View style={styles.body3}>
-        <TextInput style={styles.search} placeholder = "이메일" />
-        <TextInput style={styles.search} placeholder = "비밀번호" />
+        <TextInput style={styles.search} placeholder = "아이디" />
+        <TextInput secureTextEntry={true} style={styles.search} placeholder = "비밀번호" />
         <Text style={styles.littel_word}>아이디/비밀번호 찾기</Text>
       </View> 
       
       <TouchableOpacity style={styles.little_word3} onPress={() => {navigation.navigate('MainScreen');}} ><Text style={styles.little_text3}>로그인</Text></TouchableOpacity>
       
-      <View style={styles.body4}>
+      {/* <View style={styles.body4}>
       <View style={styles.body41}>
       <View style={styles.Imagebox}>
       <Image source={kakao}  resizeMode="stretch" style={styles.naver}/>
@@ -58,8 +57,9 @@ export default function LoginScreen({route, navigation }){
       <Image source={goo}  resizeMode="stretch" style={styles.naver}/>
       </View>
       </View>         
-      </View>     
-      
+      </View>      */}
+      <TouchableOpacity style={styles.little_word4} onPress={() => {navigation.navigate('MainScreen');}} >
+        <Text style={{...styles.little_text3,fontWeight: 'normal'}}>계정이 없으신가요?    가입하기</Text></TouchableOpacity>
     </View>
     
   );
@@ -126,9 +126,21 @@ little_word3:{
   borderWidth: 1,
   height: SCREEN_HEIGHT/15,
 },
+little_word4:{
+  justifyContent: 'center',
+  alignContent:"center",
+  position: "absolute",
+  bottom: 0,
+  backgroundColor: '#6366FF',
+  borderStyle: 'solid',
+  borderColor: '#6366FF',
+  borderWidth: 1,
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT/12,
+},
 little_text3:{
   textAlign:'center',
-  fontSize:20,
+  fontSize:18,
   fontWeight: 'bold',
   color:"#FFFFFF"
 },

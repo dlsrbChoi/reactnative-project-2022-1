@@ -26,6 +26,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Profilepicture from "../image/Profilepicture.png";
 import Flatdumpling from "../image/flatdumpling.png";
 import Porkcutletcurry from "../image/Porkcutletcurry.png";
+import CiabattaSandwich from "../image/CiabattaSandwich.png";
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
 
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     },
     Rectangle4734: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height*1,
+        height: Dimensions.get('window').height*1.3,
         backgroundColor: '#ffffff',
         borderStyle: 'solid',
         borderColor: '#ffffff',
@@ -795,6 +796,45 @@ export default function AppView ({route, navigation}){
                         <View style={styles.Frame170}>
                             <ProgressBar progress={0.13} color="#6C6EC9" style={styles.bar}/>
                             <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>지방 13%</Text>
+                        </View>
+                    </View>
+
+                    <View style={{...styles.Rectangle4750}}>
+                        <View style={{...styles.Rectangle47501, flex: 1.2}}>
+                            <Image source={CiabattaSandwich} style={styles.image} />
+                        </View>
+                        <View style={{...styles.Rectangle47502, flex: 2.3}}>
+                            <View style={{...styles.bodyrow, alignItems: 'center'}}>
+                                <Text style={{fontSize: 20, color: '#3D3B4C', marginLeft: 15}}>치아바타 샌드위치</Text>
+                                <Text style={{fontSize: 15, color: '#888888', marginLeft: 10}}>오후 3:53</Text>
+                            </View>
+                            <View style={{...styles.bodyrow, alignItems: 'center'}}>
+                                <Text style={{fontSize: 15, color: '#3D3B4C', marginLeft: 15, marginTop: 15}}>식사량</Text>
+                                <Text style={{fontSize: 15, color: '#6C6EC9', marginLeft: 10, marginTop: 15}}>1개</Text>
+                            </View>
+                            <View style={{...styles.bodyrow, alignItems: 'center'}}>
+                                <Text style={{fontSize: 15, color: '#3D3B4C', marginLeft: 15, marginTop: 10}}>식후상태</Text>
+                                <Text style={{fontSize: 15, color: '#6C6EC9', marginLeft: 10, marginTop: 10}}>양호해요</Text>
+                            </View>
+                        </View>
+                        <View style={{flex: 0.5, flexDirection: 'row'}}>
+                                <Text style={{fontSize: 15, color: '#888888'}}>수정 </Text>
+                                <MaterialIcons name="keyboard-arrow-right" size={15} color="#888888" />
+                        </View>
+                    </View>         
+
+                    <View style={styles.bodyrow}>
+                        <View style={styles.Frame170}>
+                            <ProgressBar progress={0.175} color="#6C6EC9" style={styles.bar}/>
+                            <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>탄수화물 17%</Text>
+                        </View>
+                        <View style={styles.Frame170}>
+                            <ProgressBar progress={0.08} color="#6C6EC9" style={styles.bar}/>
+                            <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>단백질 8%</Text>
+                        </View>
+                        <View style={styles.Frame170}>
+                            <ProgressBar progress={0.11} color="#6C6EC9" style={styles.bar}/>
+                            <Text style={{fontSize: 16, color: '#6F6D7E', marginTop: 10}}>지방 12%</Text>
                         </View>
                     </View>
                 </View>

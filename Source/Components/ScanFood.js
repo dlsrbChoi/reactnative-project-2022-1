@@ -34,7 +34,7 @@ export default function App({navigation}) {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
+      <StatusBar style="dark" />
       <View style={styles.TopNavigation}>
           <View style={styles.Frame1691}>
             <Icon name="arrow-back" size={40} color="black" style={styles.arrowBack} onPress={()=>navigation.goBack()}/>
