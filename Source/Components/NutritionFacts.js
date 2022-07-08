@@ -426,8 +426,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   Imagebox: {
-    width: 200, 
-    height: 200,
+    width: Dimensions.get('window').width/2, 
+    height: Dimensions.get('window').width/2,
     backgroundColor: '#f7f7fb',
     borderStyle: 'solid',
     borderColor: '#f7f7fb',
